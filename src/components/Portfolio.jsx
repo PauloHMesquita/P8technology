@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import { ExternalLink, Code, Database, Zap, Shield, Package, FileText, Users, Globe } from 'lucide-react';
+import { ExternalLink, Code, Database, Zap, Shield, Package, FileText, Users, Globe, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import projectsData from '../data/projects.json';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 
 const Portfolio = () => {
   const [selectedCategory, setSelectedCategory] = useState('Todos');
@@ -27,12 +28,17 @@ const Portfolio = () => {
     ? projectsData.projects 
     : projectsData.projects.filter(project => project.category === selectedCategory);
 
-  const openProjectModal = (project) => {
+  const openProjectModal = (project, event) => {
+    event.stopPropagation();
     setSelectedProject(project);
   };
 
   const closeProjectModal = () => {
     setSelectedProject(null);
+  };
+
+  const handleCarouselClick = (event) => {
+    event.stopPropagation();
   };
 
   return (
@@ -73,14 +79,35 @@ const Portfolio = () => {
               <div
                 key={project.id}
                 className="bg-slate-800 rounded-lg overflow-hidden border border-slate-700 hover:border-yellow-400 transition-all duration-300 transform hover:scale-105 cursor-pointer"
-                onClick={() => openProjectModal(project)}
+                onClick={(e) => openProjectModal(project, e)}
               >
-                {/* Project Image Placeholder */}
-                <div className="h-48 bg-gradient-to-br from-slate-700 to-slate-600 flex items-center justify-center">
-                  <div className="text-center">
-                    {getCategoryIcon(project.category)}
-                    <p className="text-slate-400 text-sm mt-2">{project.category}</p>
-                  </div>
+                {/* Project Image Carousel */}
+                <div className="h-48 relative overflow-hidden rounded-t-lg" onClick={handleCarouselClick}>
+                  <Carousel className="w-full h-full">
+                    <CarouselContent className="h-full">
+                      {project.images && project.images.map((image, index) => (
+                        <CarouselItem key={index} className="h-full">
+                          <img 
+                            src={image} 
+                            alt={`${project.title} - ${index + 1}`} 
+                            className="w-full h-full object-cover cursor-pointer" 
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              openProjectModal(project, e);
+                            }}
+                          />
+                        </CarouselItem>
+                      ))}
+                    </CarouselContent>
+                    <CarouselPrevious 
+                      className="absolute left-2 top-1/2 -translate-y-1/2 z-10" 
+                      onClick={handleCarouselClick}
+                    />
+                    <CarouselNext 
+                      className="absolute right-2 top-1/2 -translate-y-1/2 z-10" 
+                      onClick={handleCarouselClick}
+                    />
+                  </Carousel>
                 </div>
 
                 {/* Project Content */}
@@ -122,8 +149,8 @@ const Portfolio = () => {
 
       {/* Project Modal */}
       {selectedProject && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-slate-800 rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={closeProjectModal}>
+          <div className="bg-slate-800 rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
             <div className="p-6">
               {/* Modal Header */}
               <div className="flex justify-between items-start mb-6">
@@ -141,12 +168,19 @@ const Portfolio = () => {
                 </Button>
               </div>
 
-              {/* Project Image Placeholder */}
-              <div className="h-64 bg-gradient-to-br from-slate-700 to-slate-600 rounded-lg flex items-center justify-center mb-6">
-                <div className="text-center">
-                  {getCategoryIcon(selectedProject.category)}
-                  <p className="text-slate-400 text-sm mt-2">{selectedProject.category}</p>
-                </div>
+              {/* Project Image Carousel in Modal */}
+              <div className="h-64 relative mb-6 overflow-hidden rounded-lg">
+                <Carousel className="w-full h-full">
+                  <CarouselContent className="h-full">
+                    {selectedProject.images && selectedProject.images.map((image, index) => (
+                      <CarouselItem key={index} className="h-full">
+                        <img src={image} alt={`${selectedProject.title} - ${index + 1}`} className="w-full h-full object-cover" />
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                  <CarouselPrevious className="absolute left-2 top-1/2 -translate-y-1/2 z-10" />
+                  <CarouselNext className="absolute right-2 top-1/2 -translate-y-1/2 z-10" />
+                </Carousel>
               </div>
 
               {/* Project Description */}

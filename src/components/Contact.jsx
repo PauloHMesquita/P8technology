@@ -1,16 +1,19 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { Mail, Phone, MapPin, Send, Linkedin, Github } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
+  const form = useRef();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     subject: '',
     message: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -20,12 +23,28 @@ const Contact = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Aqui você pode implementar a lógica de envio do formulário
-    console.log('Form submitted:', formData);
-    alert('Mensagem enviada com sucesso! Entrarei em contato em breve.');
-    setFormData({ name: '', email: '', subject: '', message: '' });
+    setIsSubmitting(true);
+
+    try {
+      // Configurações do EmailJS
+      const serviceId = 'service_eqzvomr'; // Você precisará configurar isso no EmailJS
+      const templateId = 'template_9xu9fqj'; // Você precisará configurar isso no EmailJS
+      const publicKey = '6XnfzrvBx1YDq59dv'; // Você precisará configurar isso no EmailJS
+
+      await emailjs.sendForm(serviceId, templateId, form.current, {
+        publicKey: publicKey,
+      });
+
+      alert('Mensagem enviada com sucesso! Entrarei em contato em breve.');
+      setFormData({ name: '', email: '', subject: '', message: '' });
+    } catch (error) {
+      console.error('Erro ao enviar mensagem:', error);
+      alert('Erro ao enviar mensagem. Tente novamente ou entre em contato diretamente pelo e-mail.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const contactInfo = [
@@ -148,7 +167,7 @@ const Contact = () => {
             {/* Contact Form */}
             <div className="bg-slate-900 p-8 rounded-lg border border-slate-700">
               <h3 className="text-2xl font-bold text-white mb-6">Envie uma Mensagem</h3>
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form ref={form} onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-slate-300 mb-2">
@@ -156,7 +175,7 @@ const Contact = () => {
                     </label>
                     <Input
                       id="name"
-                      name="name"
+                      name="user_name"
                       type="text"
                       required
                       value={formData.name}
@@ -171,7 +190,7 @@ const Contact = () => {
                     </label>
                     <Input
                       id="email"
-                      name="email"
+                      name="user_email"
                       type="email"
                       required
                       value={formData.email}
@@ -216,10 +235,11 @@ const Contact = () => {
 
                 <Button
                   type="submit"
-                  className="w-full bg-gradient-to-r from-yellow-400 to-yellow-600 hover:from-yellow-500 hover:to-yellow-700 text-slate-900 font-semibold py-3 transition-all duration-300"
+                  disabled={isSubmitting}
+                  className="w-full bg-gradient-to-r from-yellow-400 to-yellow-600 hover:from-yellow-500 hover:to-yellow-700 text-slate-900 font-semibold py-3 transition-all duration-300 disabled:opacity-50"
                 >
                   <Send className="w-5 h-5 mr-2" />
-                  Enviar Mensagem
+                  {isSubmitting ? 'Enviando...' : 'Enviar Mensagem'}
                 </Button>
               </form>
             </div>
