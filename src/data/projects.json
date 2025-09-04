@@ -1,0 +1,141 @@
+{
+  "projects": [
+    {
+      "id": "office-supplies-it-devices",
+      "title": "Office Supplies & IT Devices Request",
+      "category": "Gestão de Recursos",
+      "description": "Sistema completo para solicitação de equipamentos de tecnologia e suprimentos de escritório, com workflow automatizado de aprovações e controle de custos.",
+      "technologies": ["Power Apps", "SharePoint", "Power Automate", "Power BI"],
+      "features": [
+        "Workflow de aprovação automatizado",
+        "Controle de custos em tempo real",
+        "Integração com fornecedores",
+        "Dashboard de acompanhamento"
+      ],
+      "image": "/src/assets/projects/office-supplies/Tela Principal.jpg",
+      "status": "Concluído"
+    },
+    {
+      "id": "FFEx-moc-visitas",
+      "title": "FFEx MOC - Solicitações de Visita",
+      "category": "Controle de Acesso",
+      "description": "Sistema de controle de acesso em portaria com gestão de visitantes, agendamento de visitas e rastreabilidade completa de entrada e saída.",
+      "technologies": ["Power Apps", "SharePoint", "Power Automate"],
+      "features": [
+        "Agendamento de visitas",
+        "Controle de acesso",
+        "Notificações automáticas de solicitações",
+        "Relatórios de acessos"
+      ],
+      "image": "/src/assets/projects/ffex-visitas.jpg",
+      "status": "Concluído"
+    },
+    {
+      "id": "ffex-external-warehouse",
+      "title": "FFEx External Warehouse",
+      "category": "Logística",
+      "description": "Sistema avançado de controle de estoque com posicionamento de equipamentos armazenados e otimização de espaço físico.",
+      "technologies": ["Power Apps", "SharePoint", "Power BI", "Logistic Integration"],
+      "features": [
+        "Localização em tempo real",
+        "KPI de Taxa Ocupacional em Tempo Real",
+        "Otimização de layout de armazém",
+        "Controle de Estoque",
+        "Controle de Inventário"
+        
+      ],
+      "image": "/src/assets/projects/external-warehouse.jpg",
+      "status": "Concluído"
+    },
+    {
+      "id": "EK2g-warehouse",
+      "title": "EK2G - Warehouse",
+      "category": "Logística",
+      "description": "Sistema logístico completo para armazenamento com controle de entrada, saída e posicionamento estratégico de equipamentos.",
+      "technologies": ["Power Apps", "SharePoint", "Power Automate"],
+      "features": [
+        "Controle de entrada e saída",
+        "Posicionamento estratégico",
+        "Inventário automatizado",
+        "Integração com ERP"
+      ],
+      "image": "/src/assets/projects/ek2g-warehouse.jpg",
+      "status": "Concluído"
+    },
+    {
+      "id": "taxtrack",
+      "title": "TaxTrack",
+      "category": "Gestão Financeira",
+      "description": "Sistema especializado no controle de notas fiscais e cálculo de ICMS com compliance fiscal automatizado e relatórios gerenciais.",
+      "technologies": ["Power Apps", "SharePoint", "Power BI", "API Receita Federal"],
+      "features": [
+        "Cálculo automático de ICMS",
+        "Compliance fiscal automatizado",
+        "Relatórios gerenciais avançados"
+      ],
+      "image": "/src/assets/projects/taxtrack.jpg",
+      "status": "Concluído"
+    },
+    {
+      "id": "it-purchase-requisitions",
+      "title": "IT Purchase Requisitions",
+      "category": "Gestão de Recursos",
+      "description": "Sistema de controle de requisições de compra de equipamentos de TI com integração financeira e aprovações hierárquicas.",
+      "technologies": ["Power Apps", "SharePoint", "Power Automate", "SAP Integration"],
+      "features": [
+        "Aprovações hierárquicas",
+        "Integração com BI",
+        "Controle Orçamentário",
+        "Histórico de compras"
+      ],
+      "image": "/src/assets/projects/it-purchase.jpg",
+      "status": "Concluído"
+    },
+    {
+      "id": "gear-guardian",
+      "title": "Gear Guardian",
+      "category": "Manutenção",
+      "description": "Sistema inteligente de controle de planejamento e manutenção preditiva de equipamentos com alertas automáticos e histórico completo.",
+      "technologies": ["Power Apps", "SharePoint", "Power BI", "IoT Sensors"],
+      "features": [
+        "Manutenção preventiva e preditiva",
+        "Integração com sensores IoT",
+        "Alertas automáticos",
+        "Análise de performance"
+      ],
+      "image": "/src/assets/projects/gear-guardian.jpg",
+      "status": "Concluído"
+    },
+    {
+      "id": "dd-it-contract-tracker",
+      "title": "DD&IT Contract Tracker",
+      "category": "Gestão de Contratos",
+      "description": "Sistema departamental para gestão de contratos com alertas de vencimento, renovações automáticas e controle de SLA.",
+      "technologies": ["Power Apps", "SharePoint", "Power Automate"],
+      "features": [
+        "Alertas de vencimento",
+        "Renovações automáticas",
+        "Controle de SLA",
+        "Gestão de fornecedores"
+      ],
+      "image": "/src/assets/projects/contract-tracker.jpg",
+      "status": "Concluído"
+    },
+    {
+      "id": "comextrack-ffex-moc",
+      "title": "ComexTrack - FFEx MOC",
+      "category": "Comércio Internacional",
+      "description": "Sistema especializado em controle de compras e contratos internacionais com gestão cambial e compliance de importação/exportação.",
+      "technologies": ["Power Apps", "SharePoint", "Power BI", "Currency API"],
+      "features": [
+        "Gestão cambial automatizada",
+        "Compliance de importação/exportação",
+        "Controle de documentos fiscais",
+        "Rastreamento de cargas"
+      ],
+      "image": "/src/assets/projects/comextrack.jpg",
+      "status": "Concluído"
+    }
+  ]
+}
+
