@@ -12,5 +12,11 @@ export default defineConfig({
     },
   },
   base: './',
+  server: {
+    host: '0.0.0.0',
+    allowedHosts: [
+      '5173-i5yzx4kvyf8id21i1d2rc-e55845cb.manus.computer'
+    ]
+  }
 })
 
