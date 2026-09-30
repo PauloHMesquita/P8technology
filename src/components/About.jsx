@@ -64,7 +64,7 @@ const About = () => {
               </span>
               {/* Contorno claro sutil, mesma técnica do cabeçalho — sem
                   selo branco sólido atrás. */}
-              <img src={logoLJ} alt="LJ Sistemas" className="logo-contraste h-10 sm:h-14 w-auto" />
+              <img src={logoLJ} alt="LJ Sistemas" className="logo-contraste-sutil h-10 sm:h-14 w-auto" />
             </div>
           </div>
 
