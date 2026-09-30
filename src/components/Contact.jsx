@@ -28,16 +28,16 @@ const Contact = () => {
     setIsSubmitting(true);
 
     try {
-      // Configurações do EmailJS
-      const serviceId = 'service_eqzvomr'; // Você precisará configurar isso no EmailJS
-      const templateId = 'template_9xu9fqj'; // Você precisará configurar isso no EmailJS
-      const publicKey = '6XnfzrvBx1YDq59dv'; // Você precisará configurar isso no EmailJS
+      // Configurações do EmailJS — mantidas como já estavam, sem mudança.
+      const serviceId = 'service_eqzvomr';
+      const templateId = 'template_9xu9fqj';
+      const publicKey = '6XnfzrvBx1YDq59dv';
 
       await emailjs.sendForm(serviceId, templateId, form.current, {
         publicKey: publicKey,
       });
 
-      alert('Mensagem enviada com sucesso! Entrarei em contato em breve.');
+      alert('Mensagem enviada com sucesso! Entraremos em contato em breve.');
       setFormData({ name: '', email: '', subject: '', message: '' });
     } catch (error) {
       console.error('Erro ao enviar mensagem:', error);
@@ -47,6 +47,8 @@ const Contact = () => {
     }
   };
 
+  // E-mail e telefone pessoais mantidos por enquanto, a pedido — trocar
+  // aqui quando o contato comercial da P8 Technology estiver definido.
   const contactInfo = [
     {
       icon: <Mail className="w-6 h-6" />,
@@ -63,7 +65,7 @@ const Contact = () => {
     {
       icon: <MapPin className="w-6 h-6" />,
       title: 'Localização',
-      value: 'Montes Claros, MG - Brasil',
+      value: 'Sete Lagoas, MG - Brasil',
       link: null
     }
   ];
@@ -90,10 +92,10 @@ const Contact = () => {
           {/* Section Title */}
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-              Entre em <span className="text-yellow-400">Contato</span>
+              Fale com a <span className="text-blue-400">P8 Technology</span>
             </h2>
             <p className="text-xl text-slate-300 max-w-3xl mx-auto">
-              Vamos conversar sobre seu próximo projeto? Estou sempre aberto a novas oportunidades e desafios
+              Quer conhecer o LJ Sistemas de perto ou tirar uma dúvida sobre o sistema? Fale diretamente com quem desenvolve
             </p>
           </div>
 
@@ -105,15 +107,15 @@ const Contact = () => {
                 <div className="space-y-6">
                   {contactInfo.map((info, index) => (
                     <div key={index} className="flex items-center space-x-4">
-                      <div className="w-12 h-12 bg-yellow-400 rounded-lg flex items-center justify-center text-slate-900">
+                      <div className="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center text-white">
                         {info.icon}
                       </div>
                       <div>
                         <h4 className="text-white font-semibold">{info.title}</h4>
                         {info.link ? (
-                          <a 
+                          <a
                             href={info.link}
-                            className="text-slate-300 hover:text-yellow-400 transition-colors"
+                            className="text-slate-300 hover:text-blue-400 transition-colors"
                           >
                             {info.value}
                           </a>
@@ -146,19 +148,19 @@ const Contact = () => {
 
               {/* Call to Action */}
               <div className="bg-slate-900 p-6 rounded-lg border border-slate-700">
-                <h4 className="text-xl font-bold text-white mb-3">Pronto para começar?</h4>
+                <h4 className="text-xl font-bold text-white mb-3">Pronto para organizar sua gestão comercial?</h4>
                 <p className="text-slate-300 mb-4">
-                  Tenho experiência em transformar ideias em soluções reais. Vamos discutir como posso ajudar seu negócio a crescer.
+                  O LJ Sistemas nasceu resolvendo problemas reais da nossa própria operação — e pode ajudar a sua também.
                 </p>
                 <div className="flex flex-wrap gap-2">
-                  <span className="px-3 py-1 bg-yellow-400 text-slate-900 text-sm rounded-full font-medium">
-                    Power Apps
+                  <span className="px-3 py-1 bg-blue-500 text-white text-sm rounded-full font-medium">
+                    CRM Comercial
                   </span>
-                  <span className="px-3 py-1 bg-yellow-400 text-slate-900 text-sm rounded-full font-medium">
-                    SharePoint
+                  <span className="px-3 py-1 bg-blue-500 text-white text-sm rounded-full font-medium">
+                    Rotas & Prospecção
                   </span>
-                  <span className="px-3 py-1 bg-yellow-400 text-slate-900 text-sm rounded-full font-medium">
-                    Power BI
+                  <span className="px-3 py-1 bg-blue-500 text-white text-sm rounded-full font-medium">
+                    Gestão de Vendas
                   </span>
                 </div>
               </div>
@@ -180,7 +182,7 @@ const Contact = () => {
                       required
                       value={formData.name}
                       onChange={handleInputChange}
-                      className="bg-slate-800 border-slate-600 text-white focus:border-yellow-400"
+                      className="bg-slate-800 border-slate-600 text-white focus:border-blue-400"
                       placeholder="Seu nome completo"
                     />
                   </div>
@@ -195,7 +197,7 @@ const Contact = () => {
                       required
                       value={formData.email}
                       onChange={handleInputChange}
-                      className="bg-slate-800 border-slate-600 text-white focus:border-yellow-400"
+                      className="bg-slate-800 border-slate-600 text-white focus:border-blue-400"
                       placeholder="seu@email.com"
                     />
                   </div>
@@ -212,7 +214,7 @@ const Contact = () => {
                     required
                     value={formData.subject}
                     onChange={handleInputChange}
-                    className="bg-slate-800 border-slate-600 text-white focus:border-yellow-400"
+                    className="bg-slate-800 border-slate-600 text-white focus:border-blue-400"
                     placeholder="Assunto da mensagem"
                   />
                 </div>
@@ -228,15 +230,15 @@ const Contact = () => {
                     rows={5}
                     value={formData.message}
                     onChange={handleInputChange}
-                    className="bg-slate-800 border-slate-600 text-white focus:border-yellow-400 resize-none"
-                    placeholder="Descreva seu projeto ou dúvida..."
+                    className="bg-slate-800 border-slate-600 text-white focus:border-blue-400 resize-none"
+                    placeholder="Conte um pouco sobre sua empresa ou sua dúvida..."
                   />
                 </div>
 
                 <Button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-gradient-to-r from-yellow-400 to-yellow-600 hover:from-yellow-500 hover:to-yellow-700 text-slate-900 font-semibold py-3 transition-all duration-300 disabled:opacity-50"
+                  className="w-full bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-400 hover:to-cyan-400 text-white font-semibold py-3 transition-all duration-300 disabled:opacity-50"
                 >
                   <Send className="w-5 h-5 mr-2" />
                   {isSubmitting ? 'Enviando...' : 'Enviar Mensagem'}
@@ -251,4 +253,3 @@ const Contact = () => {
 };
 
 export default Contact;
-
