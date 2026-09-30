@@ -1,4 +1,5 @@
 import { Heart, Code } from 'lucide-react';
+import logoP8 from '../assets/logo-p8.png';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -10,8 +11,10 @@ const Footer = () => {
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             {/* Logo and Copyright */}
             <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-4">
-              <div className="text-xl font-bold text-white">
-                <span className="text-blue-400">P8</span>Technology
+              {/* Mesmo selo claro do cabeçalho — necessário porque o texto
+                  da logo é escuro, feito pra fundo claro. */}
+              <div className="bg-white rounded-lg px-2.5 py-1 shadow-sm">
+                <img src={logoP8} alt="P8 Technology" className="h-6 w-auto" />
               </div>
               <div className="text-slate-400 text-sm">
                 © {currentYear} P8 Technology — todos os direitos reservados

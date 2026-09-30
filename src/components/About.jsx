@@ -1,5 +1,6 @@
 import { Building2, ShoppingCart, Package, Receipt, LineChart, ShieldCheck, Headset } from 'lucide-react';
 import profileImage from '../assets/profile.jpg';
+import logoLJ from '../assets/logo-lj-sistemas.png';
 
 const About = () => {
   // O que o serviço da P8 Technology cobre como representante LJ Sistemas —
@@ -51,6 +52,18 @@ const About = () => {
               A P8 Technology é representante oficial da LJ Sistemas em Sete Lagoas, MG — levando sistemas de
               gestão especializados por segmento para o comércio e serviços da região
             </p>
+          </div>
+
+          {/* Faixa de Parceria Oficial — prova visual da parceria, não só o
+              texto. Isso é o que mais gera confiança pra quem visita: ver a
+              logo de uma marca já estabelecida, não só ler a afirmação. */}
+          <div className="flex justify-center mb-12 sm:mb-16 animate-fade-in-up">
+            <div className="inline-flex items-center gap-4 sm:gap-6 bg-slate-900 border border-slate-700 rounded-2xl px-6 sm:px-8 py-4 sm:py-5 shadow-lg">
+              <span className="text-xs sm:text-sm text-slate-400 font-medium uppercase tracking-wide border-r border-slate-700 pr-4 sm:pr-6">
+                Parceria<br />Oficial
+              </span>
+              <img src={logoLJ} alt="LJ Sistemas" className="h-10 sm:h-14 w-auto" />
+            </div>
           </div>
 
           <div className="grid lg:grid-cols-3 gap-8 sm:gap-12 items-start">

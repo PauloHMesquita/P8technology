@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Menu, X, LogIn } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import logoP8 from '../assets/logo-p8.png';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -39,12 +40,13 @@ const Header = () => {
     }`}>
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
-          {/* Logo — se vocês já tiverem o arquivo de logo usado no CRM
-              (logo-p8.png), o ideal é trocar este texto por <img>, pra ficar
-              visualmente igual nos dois lugares. Por enquanto, texto com a
-              mesma cor de destaque do sistema (azul), não mais amarelo. */}
-          <div className="text-2xl font-bold text-white">
-            <span className="text-blue-400">P8</span>Technology
+          {/* Logo dentro de um selo claro — o arquivo tem o texto
+              "TECHNOLOGY" em azul-marinho, feito pra fundo claro. Sem esse
+              fundo branco por trás, o texto ficaria ilegível no cabeçalho
+              escuro. Mesma técnica já usada no login do CRM, só que
+              invertida (lá é selo escuro pra logo de texto branco). */}
+          <div className="bg-white rounded-lg px-3 py-1.5 shadow-sm">
+            <img src={logoP8} alt="P8 Technology" className="h-7 sm:h-9 w-auto" />
           </div>
 
           {/* Desktop Menu */}
