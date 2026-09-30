@@ -62,7 +62,12 @@ const About = () => {
               <span className="text-xs sm:text-sm text-slate-400 font-medium uppercase tracking-wide border-r border-slate-700 pr-4 sm:pr-6">
                 Parceria<br />Oficial
               </span>
-              <img src={logoLJ} alt="LJ Sistemas" className="h-10 sm:h-14 w-auto" />
+              {/* Selo branco por trás — a logo da LJ Sistemas tem texto
+                  cinza, feito pra fundo claro; sem isso, ficaria apagada
+                  no card escuro. */}
+              <div className="bg-white rounded-lg px-3 py-2 shadow-sm">
+                <img src={logoLJ} alt="LJ Sistemas" className="h-8 sm:h-11 w-auto" />
+              </div>
             </div>
           </div>
 
