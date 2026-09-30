@@ -43,7 +43,7 @@ const Portfolio = () => {
           {/* Section Title */}
           <div className="text-center mb-12 sm:mb-16 animate-fade-in-up">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4">
-              Nossas <span className="gradient-primary bg-clip-text text-transparent">Soluções</span>
+              Nossas <span className="gradient-primary bg-clip-text text-transparent force-bg-clip-text">Soluções</span>
             </h2>
             <p className="text-lg sm:text-xl text-slate-300 max-w-3xl mx-auto px-4 sm:px-0">
               Sistemas de gestão LJ Sistemas, especializados por tipo de negócio — implantação, treinamento e
