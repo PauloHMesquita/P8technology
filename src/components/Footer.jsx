@@ -11,10 +11,10 @@ const Footer = () => {
             {/* Logo and Copyright */}
             <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-4">
               <div className="text-xl font-bold text-white">
-                <span className="text-yellow-400">P8</span>Technology
+                <span className="text-blue-400">P8</span>Technology
               </div>
               <div className="text-slate-400 text-sm">
-                © {currentYear} Paulo H Mesquita todos os direitos reservados
+                © {currentYear} P8 Technology — todos os direitos reservados
               </div>
             </div>
 
@@ -23,7 +23,7 @@ const Footer = () => {
               <span>Desenvolvido com</span>
               <Heart className="w-4 h-4 text-red-400 fill-current" />
               <span>e</span>
-              <Code className="w-4 h-4 text-yellow-400" />
+              <Code className="w-4 h-4 text-blue-400" />
               <span>usando React + Tailwind CSS</span>
             </div>
           </div>
@@ -31,7 +31,7 @@ const Footer = () => {
           {/* Additional Info */}
           <div className="mt-6 pt-6 border-t border-slate-700 text-center">
             <p className="text-slate-400 text-sm">
-              P8Technology empresa especialista em Power Apps, SharePoint e soluções empresariais personalizadas que transformam negócios
+              P8 Technology — representante oficial LJ Sistemas em Sete Lagoas, MG. Sistemas de gestão especializados por segmento, com implantação, treinamento e suporte local.
             </p>
           </div>
         </div>
@@ -41,4 +41,3 @@ const Footer = () => {
 };
 
 export default Footer;
-
