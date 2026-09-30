@@ -1,4 +1,4 @@
-import { ArrowDown, Route, Users, LineChart, Sparkles } from 'lucide-react';
+import { ArrowDown, ShoppingCart, Package, Receipt, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const Hero = () => {
@@ -34,46 +34,46 @@ const Hero = () => {
           {/* Badge */}
           <div className="inline-flex items-center px-4 py-2 bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-full text-xs sm:text-sm text-slate-300 mb-6 sm:mb-8 animate-fade-in-up">
             <Sparkles className="w-3 h-3 sm:w-4 sm:h-4 mr-2 text-blue-400" />
-            <span className="whitespace-nowrap">Sistemas de gestão para pequenas e médias empresas</span>
+            <span className="whitespace-nowrap">Representante oficial LJ Sistemas em Sete Lagoas, MG</span>
           </div>
 
           {/* Main Title */}
           <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white mb-4 sm:mb-6 animate-fade-in-up animation-delay-200 leading-tight">
-            Tecnologia que organiza
+            Sistema de gestão
             <span className="gradient-primary bg-clip-text text-transparent block animate-gradient min-h-[1.2em] min-w-[1em] force-bg-clip-text">
-              sua operação comercial
+              feito para o seu tipo de negócio
             </span>
             <span className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-slate-300 block mt-2">
-              do primeiro contato ao contrato fechado
+              implantação, treinamento e suporte local
             </span>
           </h1>
 
           {/* Subtitle */}
           <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-slate-400 mb-8 sm:mb-12 max-w-3xl mx-auto leading-relaxed animate-fade-in-up animation-delay-400 px-4 sm:px-0">
-            Desenvolvemos e operamos o <span className="text-blue-400 font-semibold">LJ Sistemas</span>, nosso
-            sistema próprio de <span className="text-cyan-400 font-semibold">CRM e gestão comercial</span> —
-            do funil de vendas à <span className="text-purple-400 font-semibold">roteirização de prospecção em campo</span>
+            Somos <span className="text-blue-400 font-semibold">representantes oficiais da LJ Sistemas</span> em
+            Sete Lagoas, MG — levando <span className="text-cyan-400 font-semibold">sistemas de gestão
+            especializados por segmento</span> para o comércio e serviços da região
           </p>
 
-          {/* Capacidades — antes eram ícones de Power Apps/SharePoint/Power BI */}
+          {/* Capacidades típicas dos sistemas LJ Sistemas que implantamos */}
           <div className="flex justify-center space-x-4 sm:space-x-6 md:space-x-12 mb-8 sm:mb-12 animate-fade-in-up animation-delay-600">
             <div className="flex flex-col items-center group">
               <div className="w-16 h-16 sm:w-20 sm:h-20 bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl flex items-center justify-center mb-2 sm:mb-3 group-hover:border-blue-500 group-hover:bg-blue-500/10 transition-all duration-300 hover-lift">
-                <Users className="w-8 h-8 sm:w-10 sm:h-10 text-blue-400 group-hover:scale-110 transition-transform duration-300" />
+                <ShoppingCart className="w-8 h-8 sm:w-10 sm:h-10 text-blue-400 group-hover:scale-110 transition-transform duration-300" />
               </div>
-              <span className="text-xs sm:text-sm text-slate-400 font-medium">CRM Comercial</span>
+              <span className="text-xs sm:text-sm text-slate-400 font-medium">PDV / Caixa</span>
             </div>
             <div className="flex flex-col items-center group">
               <div className="w-16 h-16 sm:w-20 sm:h-20 bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl flex items-center justify-center mb-2 sm:mb-3 group-hover:border-cyan-500 group-hover:bg-cyan-500/10 transition-all duration-300 hover-lift">
-                <Route className="w-8 h-8 sm:w-10 sm:h-10 text-cyan-400 group-hover:scale-110 transition-transform duration-300" />
+                <Package className="w-8 h-8 sm:w-10 sm:h-10 text-cyan-400 group-hover:scale-110 transition-transform duration-300" />
               </div>
-              <span className="text-xs sm:text-sm text-slate-400 font-medium">Rotas & Prospecção</span>
+              <span className="text-xs sm:text-sm text-slate-400 font-medium">Controle de Estoque</span>
             </div>
             <div className="flex flex-col items-center group">
               <div className="w-16 h-16 sm:w-20 sm:h-20 bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl flex items-center justify-center mb-2 sm:mb-3 group-hover:border-purple-500 group-hover:bg-purple-500/10 transition-all duration-300 hover-lift">
-                <LineChart className="w-8 h-8 sm:w-10 sm:h-10 text-purple-400 group-hover:scale-110 transition-transform duration-300" />
+                <Receipt className="w-8 h-8 sm:w-10 sm:h-10 text-purple-400 group-hover:scale-110 transition-transform duration-300" />
               </div>
-              <span className="text-xs sm:text-sm text-slate-400 font-medium">Dashboards & Metas</span>
+              <span className="text-xs sm:text-sm text-slate-400 font-medium">Emissão Fiscal</span>
             </div>
           </div>
 
@@ -84,7 +84,7 @@ const Hero = () => {
               size="lg"
               className="gradient-primary hover:opacity-90 text-white font-semibold px-6 sm:px-8 py-3 sm:py-4 rounded-xl transition-all duration-300 hover-lift group w-full sm:w-auto"
             >
-              Conheça o Sistema
+              Conheça as Soluções
               <ArrowDown className="ml-2 w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-y-1 transition-transform duration-300" />
             </Button>
 
@@ -103,12 +103,12 @@ const Hero = () => {
               começando a operar o sistema. Ajuste o texto livremente. */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-8 mt-12 sm:mt-16 animate-fade-in-up animation-delay-1000 px-4 sm:px-0">
             <div className="text-center">
-              <div className="text-sm sm:text-base font-semibold text-white">Sistema próprio</div>
-              <div className="text-xs sm:text-sm text-slate-400 mt-1">Desenvolvido e mantido por nós</div>
+              <div className="text-sm sm:text-base font-semibold text-white">Representante Oficial</div>
+              <div className="text-xs sm:text-sm text-slate-400 mt-1">Parceria direta com a LJ Sistemas</div>
             </div>
             <div className="text-center">
-              <div className="text-sm sm:text-base font-semibold text-white">Suporte direto</div>
-              <div className="text-xs sm:text-sm text-slate-400 mt-1">Com quem desenvolve o sistema</div>
+              <div className="text-sm sm:text-base font-semibold text-white">Suporte Local</div>
+              <div className="text-xs sm:text-sm text-slate-400 mt-1">Atendimento presencial na região</div>
             </div>
             <div className="text-center">
               <div className="text-sm sm:text-base font-semibold text-white">Sete Lagoas, MG</div>

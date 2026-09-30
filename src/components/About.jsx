@@ -1,41 +1,40 @@
-import { Building2, Route, Users, LineChart, ShieldCheck, Headset } from 'lucide-react';
+import { Building2, ShoppingCart, Package, Receipt, LineChart, ShieldCheck, Headset } from 'lucide-react';
 import profileImage from '../assets/profile.jpg';
 
 const About = () => {
-  // Antes eram barras de "habilidade pessoal" (Power Apps 95%, SharePoint
-  // 95%...). Pra uma empresa, faz mais sentido mostrar O QUE o sistema
-  // oferece do que uma porcentagem de domínio de ferramenta.
+  // O que o serviço da P8 Technology cobre como representante LJ Sistemas —
+  // não é sobre o CRM interno da empresa, é sobre o que o cliente final recebe.
   const capacidades = [
-    { nome: 'Funil Comercial (Kanban)', icone: <Users className="w-5 h-5" /> },
-    { nome: 'Rotas de Prospecção com Mapa', icone: <Route className="w-5 h-5" /> },
-    { nome: 'Captação de Novos Clientes', icone: <LineChart className="w-5 h-5" /> },
-    { nome: 'Gestão de Usuários e Permissões', icone: <ShieldCheck className="w-5 h-5" /> },
-    { nome: 'Dashboards e Indicadores', icone: <Building2 className="w-5 h-5" /> },
-    { nome: 'Suporte Direto com Quem Desenvolve', icone: <Headset className="w-5 h-5" /> },
+    { nome: 'PDV / Frente de Caixa', icone: <ShoppingCart className="w-5 h-5" /> },
+    { nome: 'Controle de Estoque', icone: <Package className="w-5 h-5" /> },
+    { nome: 'Emissão Fiscal (NFC-e/NF-e)', icone: <Receipt className="w-5 h-5" /> },
+    { nome: 'Financeiro e Contas a Pagar/Receber', icone: <LineChart className="w-5 h-5" /> },
+    { nome: 'Treinamento da Equipe', icone: <Headset className="w-5 h-5" /> },
+    { nome: 'Suporte Local Contínuo', icone: <ShieldCheck className="w-5 h-5" /> },
   ];
 
-  // Trocamos "9+ Projetos / 500+ Usuários" (números de portfólio pessoal)
-  // por conquistas reais e verificáveis da empresa neste momento.
+  // Conquistas da P8 Technology como representante local — não do
+  // desenvolvimento do sistema em si, que é da LJ Sistemas.
   const achievements = [
     {
       icon: <Building2 className="w-6 h-6 sm:w-8 sm:h-8 text-blue-400" />,
-      title: "Sistema Próprio",
-      description: "Construído e mantido internamente, sem depender de licença de terceiros"
+      title: "Representante Oficial",
+      description: "Parceria direta com a LJ Sistemas, marca consolidada em sistemas de gestão"
     },
     {
-      icon: <Route className="w-6 h-6 sm:w-8 sm:h-8 text-cyan-400" />,
-      title: "Foco Comercial",
-      description: "Pensado para quem faz prospecção e vendas em campo no dia a dia"
+      icon: <Package className="w-6 h-6 sm:w-8 sm:h-8 text-cyan-400" />,
+      title: "18 Segmentos",
+      description: "Sistemas especializados para diferentes tipos de comércio e serviço"
     },
     {
       icon: <Headset className="w-6 h-6 sm:w-8 sm:h-8 text-purple-400" />,
-      title: "Suporte Direto",
-      description: "Quem atende é quem desenvolve — sem central de atendimento terceirizada"
+      title: "Suporte Local",
+      description: "Atendimento presencial em Sete Lagoas — sem central de atendimento distante"
     },
     {
       icon: <ShieldCheck className="w-6 h-6 sm:w-8 sm:h-8 text-green-400" />,
       title: "Em Expansão",
-      description: "Sistema em evolução constante, com novas funcionalidades a cada versão"
+      description: "Crescendo junto com o comércio local da região"
     }
   ];
 
@@ -49,8 +48,8 @@ const About = () => {
               Quem <span className="gradient-primary bg-clip-text text-transparent">Somos</span>
             </h2>
             <p className="text-lg sm:text-xl text-slate-300 max-w-3xl mx-auto px-4 sm:px-0">
-              A P8 Technology desenvolve sistemas de gestão para pequenas e médias empresas — começando pelo
-              nosso próprio produto, o LJ Sistemas, usado na gestão comercial da nossa operação em Sete Lagoas, MG
+              A P8 Technology é representante oficial da LJ Sistemas em Sete Lagoas, MG — levando sistemas de
+              gestão especializados por segmento para o comércio e serviços da região
             </p>
           </div>
 
@@ -84,20 +83,20 @@ const About = () => {
               <div className="space-y-4 sm:space-y-6">
                 <div className="prose prose-lg text-slate-300">
                   <p className="text-base sm:text-lg leading-relaxed">
-                    A <span className="text-blue-400 font-semibold">P8 Technology</span> nasceu para resolver um
-                    problema comum em pequenas e médias empresas: gestão comercial espalhada em planilhas,
-                    caderninhos e memória de quem vende.
+                    A <span className="text-blue-400 font-semibold">P8 Technology</span> é representante oficial
+                    da <span className="text-cyan-400 font-semibold">LJ Sistemas</span> na região de Sete Lagoas,
+                    MG — levando sistemas de gestão especializados por tipo de negócio para o comércio e
+                    serviços locais.
                   </p>
                   <p className="text-base sm:text-lg leading-relaxed">
-                    Desenvolvemos o <span className="text-cyan-400 font-semibold">LJ Sistemas</span>, uma
-                    plataforma própria de CRM e gestão comercial — do primeiro contato com o cliente até o
-                    fechamento, incluindo <span className="text-purple-400 font-semibold">roteirização de
-                    visitas em campo</span> e captação de novos clientes.
+                    Cuidamos de tudo: <span className="text-purple-400 font-semibold">implantação, treinamento
+                    da equipe e suporte contínuo</span> — sempre com atendimento local, sem depender de uma
+                    central distante.
                   </p>
                   <p className="text-base sm:text-lg leading-relaxed">
-                    Por sermos nós mesmos os desenvolvedores e os usuários do sistema no dia a dia, cada
-                    funcionalidade nasce de um problema <span className="text-green-400 font-semibold">real, já
-                    vivido</span> — não de uma suposição sobre o que o mercado precisa.
+                    Por trabalharmos diretamente com quem vende no balcão todo dia, entendemos as necessidades
+                    reais de cada segmento — de um açougue a uma loja de material de construção — e não só a
+                    teoria de um manual de sistema.
                   </p>
                 </div>
               </div>
