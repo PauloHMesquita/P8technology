@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, LogIn } from 'lucide-react';
+import { Menu, X, LogIn, MessageCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import logoP8 from '../assets/logo-p8.png';
 
@@ -34,7 +34,14 @@ const Header = () => {
     { id: 'contact', label: 'Contato' }
   ];
 
+  // Número comercial já usado no Contato — mesmo dígitos, formato que o
+  // WhatsApp espera (código do país + DDD + número, só dígitos).
+  const whatsappUrl = 'https://wa.me/5538999922756?text=' + encodeURIComponent(
+    'Olá! Vim pelo site da P8 Technology e gostaria de saber mais sobre os sistemas da LJ Sistemas.'
+  );
+
   return (
+    <>
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
       isScrolled ? 'bg-slate-900/95 backdrop-blur-sm shadow-lg' : 'bg-transparent'
     }`}>
@@ -111,6 +118,22 @@ const Header = () => {
         )}
       </div>
     </header>
+
+    {/* Botão flutuante de WhatsApp — fica visível em qualquer parte da
+        página, em qualquer seção, já que é posição fixa. Verde
+        reconhecível (cor oficial do WhatsApp), sempre no canto inferior
+        direito, comum em sites de negócio local por converter melhor
+        que formulário de contato. */}
+    <a
+      href={whatsappUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Falar no WhatsApp"
+      className="fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-50 flex items-center justify-center w-14 h-14 rounded-full bg-[#25D366] hover:bg-[#20BD5C] text-white shadow-lg hover:scale-110 transition-all duration-300"
+    >
+      <MessageCircle className="w-7 h-7" fill="white" />
+    </a>
+    </>
   );
 };
 
