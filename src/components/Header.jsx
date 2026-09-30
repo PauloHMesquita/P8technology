@@ -40,13 +40,12 @@ const Header = () => {
     }`}>
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
-          {/* Logo dentro de um selo claro — o arquivo tem o texto
-              "TECHNOLOGY" em azul-marinho, feito pra fundo claro. Sem esse
-              fundo branco por trás, o texto ficaria ilegível no cabeçalho
-              escuro. Mesma técnica já usada no login do CRM, só que
-              invertida (lá é selo escuro pra logo de texto branco). */}
-          <div className="bg-white rounded-lg px-3 py-1.5 shadow-sm">
-            <img src={logoP8} alt="P8 Technology" className="h-7 sm:h-9 w-auto" />
+          {/* Logo com contorno claro sutil (classe .logo-contraste, de
+              App.css) em vez de um selo branco sólido atrás — o texto
+              escuro da logo fica legível no cabeçalho escuro sem parecer
+              um adesivo colado. */}
+          <div className="flex items-center">
+            <img src={logoP8} alt="P8 Technology" className="logo-contraste h-9 sm:h-11 w-auto" />
           </div>
 
           {/* Desktop Menu */}

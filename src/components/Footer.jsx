@@ -11,11 +11,7 @@ const Footer = () => {
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             {/* Logo and Copyright */}
             <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-4">
-              {/* Mesmo selo claro do cabeçalho — necessário porque o texto
-                  da logo é escuro, feito pra fundo claro. */}
-              <div className="bg-white rounded-lg px-2.5 py-1 shadow-sm">
-                <img src={logoP8} alt="P8 Technology" className="h-6 w-auto" />
-              </div>
+              <img src={logoP8} alt="P8 Technology" className="logo-contraste h-8 w-auto" />
               <div className="text-slate-400 text-sm">
                 © {currentYear} P8 Technology — todos os direitos reservados
               </div>

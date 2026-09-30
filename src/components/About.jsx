@@ -62,12 +62,9 @@ const About = () => {
               <span className="text-xs sm:text-sm text-slate-400 font-medium uppercase tracking-wide border-r border-slate-700 pr-4 sm:pr-6">
                 Parceria<br />Oficial
               </span>
-              {/* Selo branco por trás — a logo da LJ Sistemas tem texto
-                  cinza, feito pra fundo claro; sem isso, ficaria apagada
-                  no card escuro. */}
-              <div className="bg-white rounded-lg px-3 py-2 shadow-sm">
-                <img src={logoLJ} alt="LJ Sistemas" className="h-8 sm:h-11 w-auto" />
-              </div>
+              {/* Contorno claro sutil, mesma técnica do cabeçalho — sem
+                  selo branco sólido atrás. */}
+              <img src={logoLJ} alt="LJ Sistemas" className="logo-contraste h-10 sm:h-14 w-auto" />
             </div>
           </div>
 
@@ -90,7 +87,7 @@ const About = () => {
                 {/* Antes dizia "Desenvolvedor" — agora deixa claro que é o
                     fundador da empresa, não um prestador de serviço avulso. */}
                 <div className="absolute -bottom-2 sm:-bottom-4 -right-2 sm:-right-4 bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-3 py-2 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-semibold shadow-lg animate-bounce">
-                  <span className="hidden sm:inline">Paulo H Mesquita / Fundador</span>
+                  <span className="hidden sm:inline">Paulo H Mesquita / Fundador P8 Technology</span>
                   <span className="sm:hidden">Paulo H Mesquita</span>
                 </div>
               </div>
