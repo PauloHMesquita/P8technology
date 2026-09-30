@@ -272,8 +272,14 @@
 /* Contorno claro sutil pra logos com texto escuro (feitas pra fundo
    claro) aparecerem legíveis em cima do fundo escuro do site — sem
    precisar de uma caixa/selo branco sólido atrás, que ficava com cara
-   de "adesivo colado". Empilha um leve brilho branco em 4 direções ao
-   redor de cada pixel opaco do PNG. */
+   de "adesivo colado". Duas intensidades, porque cada logo precisa de
+   um nível diferente:
+
+   - .logo-contraste: forte, pro texto bem escuro (quase preto) da
+     logo da P8 — sem isso ele quase some no fundo escuro.
+   - .logo-contraste-sutil: mais leve, pra logos que já têm um
+     contraste razoável por natureza (ex.: texto cinza da LJ Sistemas)
+     — só o suficiente pra nitidez, sem parecer um brilho neon. */
 .logo-contraste {
   filter:
     drop-shadow(0 1px 0 rgba(255, 255, 255, 0.85))
@@ -281,4 +287,10 @@
     drop-shadow(1px 0 0 rgba(255, 255, 255, 0.85))
     drop-shadow(-1px 0 0 rgba(255, 255, 255, 0.85))
     drop-shadow(0 0 6px rgba(255, 255, 255, 0.35));
+}
+
+.logo-contraste-sutil {
+  filter:
+    drop-shadow(0 0 1px rgba(255, 255, 255, 0.6))
+    drop-shadow(0 0 1px rgba(255, 255, 255, 0.6));
 }
