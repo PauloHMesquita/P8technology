@@ -64,7 +64,9 @@ const About = () => {
               </span>
               {/* Contorno claro sutil, mesma técnica do cabeçalho — sem
                   selo branco sólido atrás. */}
-              <img src={logoLJ} alt="LJ Sistemas" className="logo-contraste-sutil h-10 sm:h-14 w-auto" />
+              {/* Sem filtro nenhum — a logo da LJ Sistemas já é transparente
+                  de verdade, não precisa de contorno artificial. */}
+              <img src={logoLJ} alt="LJ Sistemas" className="h-10 sm:h-14 w-auto" />
             </div>
           </div>
 
