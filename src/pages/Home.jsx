@@ -6,6 +6,7 @@ import {
 } from 'lucide-react';
 import Contact from '../components/Contact';
 import { CATEGORIAS, SOLUCOES } from '../data/solucoes';
+import { PRODUTOS } from '../data/produtos';
 import { IconeSolucao, linkWhatsapp, rolarPara, useSeo } from '../lib/site';
 import fotoFundador from '../assets/fundador.webp';
 import logoLJ from '../assets/logo-lj-sistemas.png';
@@ -20,6 +21,7 @@ export default function Home() {
       <Hero />
       <Beneficios />
       <Solucoes />
+      <SistemasP8 />
       <ComoFunciona />
       <QuemSomos />
       <Duvidas />
@@ -195,6 +197,35 @@ function Solucoes() {
           </a>{' '}
           — avaliamos o seu caso.
         </p>
+      </div>
+    </section>
+  );
+}
+
+/* ---------------- Sistemas próprios da P8 ---------------- */
+function SistemasP8() {
+  return (
+    <section id="sistemas-p8" className="bg-tinta py-20 text-slate-300 sm:py-24">
+      <div className="container-site">
+        <div className="max-w-2xl">
+          <span className="rotulo bg-white/10 text-sky-300">Sistemas P8</span>
+          <h2 className="mt-4 text-3xl font-extrabold leading-tight text-white sm:text-4xl">Plataformas desenvolvidas pela P8</h2>
+          <p className="mt-4 text-lg leading-relaxed text-slate-400">Tecnologia própria para operações que pedem mais do que um sistema de prateleira, com implantação e suporte feitos pela nossa equipe.</p>
+        </div>
+        <div className="mt-10 grid gap-4 md:grid-cols-3">
+          {PRODUTOS.map((p) => (
+            <Link key={p.slug} to={`/sistemas/${p.slug}`}
+              className="group flex flex-col rounded-2xl border border-white/10 bg-white/5 p-6 transition-colors hover:border-sky-400/60 hover:bg-white/10">
+              <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-sky-400/15 text-sky-300"><IconeSolucao nome={p.icone} /></span>
+              <h3 className="mt-5 text-xl font-bold text-white">{p.nome}</h3>
+              <p className="mt-1 text-sm font-semibold text-sky-300">{p.chamada}</p>
+              <p className="mt-3 flex-1 text-[15px] leading-relaxed text-slate-400">{p.resumo}</p>
+              <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-white">
+                Conhecer <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </span>
+            </Link>
+          ))}
+        </div>
       </div>
     </section>
   );

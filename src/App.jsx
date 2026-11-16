@@ -4,6 +4,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import Solucao from './pages/Solucao';
+import Produto from './pages/Produto';
 import NaoEncontrada from './pages/NaoEncontrada';
 
 // Ao trocar de página volta ao topo; com "#secao" no link, rola até ela.
@@ -34,6 +35,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/solucoes/:slug" element={<Solucao />} />
+          <Route path="/sistemas/:slug" element={<Produto />} />
           <Route path="*" element={<NaoEncontrada />} />
         </Routes>
       </main>

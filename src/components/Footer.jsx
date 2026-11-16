@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { Instagram, Mail, MapPin, Phone } from 'lucide-react';
 import logo from '../assets/logo-p8-site.webp';
 import { SOLUCOES } from '../data/solucoes';
+import { PRODUTOS } from '../data/produtos';
 import { CONTATO, linkWhatsapp } from '../lib/site';
 
 export default function Footer() {
@@ -25,6 +26,12 @@ export default function Footer() {
                   {s.nome}
                 </Link>
               </li>
+            ))}
+          </ul>
+          <h3 className="mt-8 text-sm font-bold uppercase tracking-wider text-tinta">Sistemas P8</h3>
+          <ul className="mt-4 flex flex-wrap gap-x-6 gap-y-2 text-sm">
+            {PRODUTOS.map((p) => (
+              <li key={p.slug}><Link to={`/sistemas/${p.slug}`} className="text-slate-600 hover:text-marca-escura">{p.nome}</Link></li>
             ))}
           </ul>
         </div>

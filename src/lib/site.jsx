@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import {
   Beef, Truck, Car, Activity, Stethoscope, Smile, Pill, Bed, Bike, Sofa,
-  Shirt, TreePine, HardHat, Wrench, Glasses, PawPrint, ShoppingCart, Route,
+  Shirt, TreePine, HardHat, Wrench, Glasses, PawPrint, ShoppingCart, Route, Forklift, Kanban, Landmark,
 } from 'lucide-react';
 
 // Contatos comerciais da P8 Technology — trocar aqui reflete no site todo.
@@ -14,6 +14,12 @@ export const CONTATO = {
   sistema: 'https://crm.p8technology.com.br',
 };
 
+// Botão "Área do cliente": entrada de cada sistema da P8 (o CRM Contab fica fora: o link vai direto ao cliente).
+export const AREA_CLIENTE = [
+  { nome: 'P8 Nexus', descricao: 'Locação e mão de obra', url: 'https://nexus.p8technology.com.br' },
+  { nome: 'P8 CRM', descricao: 'Gestão comercial', url: 'https://crm.p8technology.com.br' },
+];
+
 export const linkWhatsapp = (texto) =>
   `https://wa.me/${CONTATO.whatsapp}?text=${encodeURIComponent(
     texto || 'Olá! Vim pelo site da P8 Technology e quero conhecer o sistema de gestão.'
@@ -23,7 +29,7 @@ const ICONES = {
   beef: Beef, truck: Truck, car: Car, activity: Activity, stethoscope: Stethoscope,
   smile: Smile, pill: Pill, bed: Bed, bike: Bike, sofa: Sofa, shirt: Shirt,
   tree: TreePine, hardhat: HardHat, wrench: Wrench, glasses: Glasses, paw: PawPrint,
-  cart: ShoppingCart, route: Route,
+  cart: ShoppingCart, route: Route, nexus: Forklift, crm: Kanban, contab: Landmark,
 };
 
 export function IconeSolucao({ nome, className = 'w-6 h-6' }) {
