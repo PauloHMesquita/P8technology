@@ -1,178 +1,116 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, LogIn, MessageCircle } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import logoP8 from '../assets/logo-p8.png';
+import logo from '../assets/logo-p8-site.webp';
+import { CONTATO, linkWhatsapp } from '../lib/site';
 
-const Header = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
+const ITENS = [
+  { para: '/#solucoes', rotulo: 'Soluções' },
+  { para: '/#como-funciona', rotulo: 'Como funciona' },
+  { para: '/#quem-somos', rotulo: 'Quem somos' },
+  { para: '/#duvidas', rotulo: 'Dúvidas' },
+  { para: '/#contato', rotulo: 'Contato' },
+];
+
+export default function Header() {
+  const [aberto, setAberto] = useState(false);
+  const [rolou, setRolou] = useState(false);
+  const { pathname, hash } = useLocation();
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    const aoRolar = () => setRolou(window.scrollY > 8);
+    aoRolar();
+    window.addEventListener('scroll', aoRolar, { passive: true });
+    return () => window.removeEventListener('scroll', aoRolar);
   }, []);
 
-  // Menu do celular aberto: a página atrás não rola, e a tecla Esc fecha.
-  // Se a tela for aumentada (virar desktop), o menu fecha sozinho.
+  // Fecha o menu do celular ao navegar.
+  useEffect(() => setAberto(false), [pathname, hash]);
+
+  // Menu aberto: página atrás não rola; Esc fecha.
   useEffect(() => {
-    if (!isMenuOpen) return undefined;
-    const overflowAnterior = document.body.style.overflow;
+    if (!aberto) return undefined;
+    const anterior = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
-    const aoTeclar = (e) => e.key === 'Escape' && setIsMenuOpen(false);
-    const aoRedimensionar = () => window.innerWidth >= 768 && setIsMenuOpen(false);
-    window.addEventListener('keydown', aoTeclar);
-    window.addEventListener('resize', aoRedimensionar);
+    const tecla = (e) => e.key === 'Escape' && setAberto(false);
+    window.addEventListener('keydown', tecla);
     return () => {
-      document.body.style.overflow = overflowAnterior;
-      window.removeEventListener('keydown', aoTeclar);
-      window.removeEventListener('resize', aoRedimensionar);
+      document.body.style.overflow = anterior;
+      window.removeEventListener('keydown', tecla);
     };
-  }, [isMenuOpen]);
-
-  const scrollToSection = (sectionId) => {
-    setIsMenuOpen(false);
-    const element = document.getElementById(sectionId);
-    if (element) {
-      // Espera o menu fechar (e a rolagem da página voltar) antes de rolar.
-      requestAnimationFrame(() => element.scrollIntoView({ behavior: 'smooth' }));
-    }
-  };
-
-  // Os "id" continuam os mesmos das seções (portfolio, about) de propósito —
-  // só o texto do menu mudou. Assim nada quebra até renomearmos as seções
-  // em si (Portfolio.jsx ainda não foi revisado).
-  const menuItems = [
-    { id: 'home', label: 'Início' },
-    { id: 'about', label: 'Quem Somos' },
-    { id: 'portfolio', label: 'Soluções' },
-    { id: 'contact', label: 'Contato' }
-  ];
-
-  // Número comercial já usado no Contato — mesmo dígitos, formato que o
-  // WhatsApp espera (código do país + DDD + número, só dígitos).
-  const whatsappUrl = 'https://wa.me/5538999922756?text=' + encodeURIComponent(
-    'Olá! Vim pelo site da P8 Technology e gostaria de saber mais sobre os sistemas da LJ Sistemas.'
-  );
-
-  // Cabeçalho com fundo sólido quando a página rolou OU quando o menu do
-  // celular está aberto (antes ficava transparente no topo e o menu se
-  // misturava com o texto do site).
-  const fundoSolido = isScrolled || isMenuOpen;
+  }, [aberto]);
 
   return (
     <>
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
-      fundoSolido ? 'bg-slate-900/95 backdrop-blur-sm shadow-lg' : 'bg-transparent'
-    }`}>
-      <div className="container mx-auto px-4 py-4">
-        <div className="flex items-center justify-between">
-          {/* Logo com contorno claro sutil (classe .logo-contraste, de
-              App.css) em vez de um selo branco sólido atrás — o texto
-              escuro da logo fica legível no cabeçalho escuro sem parecer
-              um adesivo colado. */}
-          <div className="flex items-center">
-            <img src={logoP8} alt="P8 Technology" className="logo-contraste h-9 sm:h-11 w-auto" />
-          </div>
+      <header
+        className={`fixed inset-x-0 top-0 z-50 transition-all duration-200 ${
+          rolou || aberto ? 'bg-white/90 shadow-[0_1px_0_rgb(15_28_46/0.08)] backdrop-blur-md' : 'bg-transparent'
+        }`}
+      >
+        <div className="container-site flex h-16 items-center justify-between sm:h-[72px]">
+          <Link to="/" aria-label="P8 Technology — página inicial" className="shrink-0">
+            <img src={logo} alt="P8 Technology" width="112" height="50" className="h-10 w-auto sm:h-11" />
+          </Link>
 
-          {/* Desktop Menu */}
-          <nav className="hidden md:flex items-center space-x-8">
-            {menuItems.map((item) => (
-              <button
-                key={item.id}
-                onClick={() => scrollToSection(item.id)}
-                className="text-white hover:text-blue-400 transition-colors duration-200 font-medium"
-              >
-                {item.label}
-              </button>
+          <nav className="hidden items-center gap-7 lg:flex" aria-label="Principal">
+            {ITENS.map((i) => (
+              <Link key={i.para} to={i.para} className="text-[15px] font-medium text-slate-600 transition-colors hover:text-marca">
+                {i.rotulo}
+              </Link>
             ))}
-            <a
-              href="https://crm.p8technology.com.br"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-blue-500 hover:bg-blue-400 text-white font-medium transition-colors duration-200"
-            >
-              <LogIn className="w-4 h-4" />
-              Acessar Sistema
-            </a>
           </nav>
 
-          {/* Mobile Menu Button */}
-          <Button
-            variant="ghost"
-            size="icon"
-            className="md:hidden text-white hover:text-blue-400"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            aria-label={isMenuOpen ? 'Fechar menu' : 'Abrir menu'}
-            aria-expanded={isMenuOpen}
+          <div className="hidden items-center gap-2 lg:flex">
+            <a href={CONTATO.sistema} target="_blank" rel="noopener noreferrer" className="btn px-3 text-slate-600 hover:text-marca">
+              <LogIn className="h-4 w-4" /> Acessar sistema
+            </a>
+            <a href={linkWhatsapp()} target="_blank" rel="noopener noreferrer" className="btn-primario py-2.5">
+              Pedir demonstração
+            </a>
+          </div>
+
+          <button
+            type="button"
+            className="-mr-2 rounded-lg p-2 text-tinta lg:hidden"
+            onClick={() => setAberto((v) => !v)}
+            aria-label={aberto ? 'Fechar menu' : 'Abrir menu'}
+            aria-expanded={aberto}
             aria-controls="menu-celular"
           >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </Button>
+            {aberto ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
         </div>
-      </div>
-    </header>
+      </header>
 
-    {/* Menu do celular: tela cheia, fundo sólido, por cima de tudo
-        (inclusive do botão do WhatsApp), começando logo abaixo do
-        cabeçalho. Tocar fora dos itens não fecha por engano. */}
-    {isMenuOpen && (
-      <nav
-        id="menu-celular"
-        className="md:hidden fixed inset-x-0 top-[68px] sm:top-[76px] bottom-0 z-[60] bg-slate-900 border-t border-slate-700 overflow-y-auto"
-      >
-        <div className="container mx-auto px-4 py-6 flex flex-col gap-1">
-          {menuItems.map((item) => (
-            <button
-              key={item.id}
-              onClick={() => scrollToSection(item.id)}
-              className="w-full text-left text-lg text-white hover:text-blue-400 active:bg-slate-800 transition-colors duration-200 font-medium py-3 px-2 rounded-lg"
-            >
-              {item.label}
-            </button>
-          ))}
-          <a
-            href="https://crm.p8technology.com.br"
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => setIsMenuOpen(false)}
-            className="mt-4 flex items-center justify-center gap-2 px-4 py-3 rounded-lg bg-blue-500 hover:bg-blue-400 text-white font-semibold transition-colors duration-200"
-          >
-            <LogIn className="w-5 h-5" />
-            Acessar Sistema
-          </a>
-          <a
-            href={whatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => setIsMenuOpen(false)}
-            className="mt-2 flex items-center justify-center gap-2 px-4 py-3 rounded-lg bg-[#25D366] hover:bg-[#20BD5C] text-white font-semibold transition-colors duration-200"
-          >
-            <MessageCircle className="w-5 h-5" fill="white" />
-            Falar no WhatsApp
-          </a>
-        </div>
-      </nav>
-    )}
+      {aberto && (
+        <nav id="menu-celular" className="fixed inset-x-0 bottom-0 top-16 z-[60] overflow-y-auto bg-white sm:top-[72px] lg:hidden" aria-label="Menu">
+          <div className="container-site flex flex-col gap-1 py-6">
+            {ITENS.map((i) => (
+              <Link key={i.para} to={i.para} className="rounded-xl px-3 py-3.5 text-lg font-semibold text-tinta active:bg-slate-100">
+                {i.rotulo}
+              </Link>
+            ))}
+            <a href={linkWhatsapp()} target="_blank" rel="noopener noreferrer" className="btn-zap mt-5">
+              <MessageCircle className="h-5 w-5" /> Falar no WhatsApp
+            </a>
+            <a href={CONTATO.sistema} target="_blank" rel="noopener noreferrer" className="btn-claro mt-2">
+              <LogIn className="h-5 w-5" /> Acessar sistema
+            </a>
+          </div>
+        </nav>
+      )}
 
-    {/* Botão flutuante de WhatsApp — escondido enquanto o menu do
-        celular está aberto (o próprio menu já tem o botão). */}
-    {!isMenuOpen && (
-      <a
-        href={whatsappUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Falar no WhatsApp"
-        className="fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-50 flex items-center justify-center w-14 h-14 rounded-full bg-[#25D366] hover:bg-[#20BD5C] text-white shadow-lg hover:scale-110 transition-all duration-300"
-      >
-        <MessageCircle className="w-7 h-7" fill="white" />
-      </a>
-    )}
+      {!aberto && (
+        <a
+          href={linkWhatsapp()}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Falar no WhatsApp"
+          className="fixed bottom-5 right-5 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-zap text-white shadow-lg shadow-zap/30 transition-transform hover:scale-105"
+        >
+          <MessageCircle className="h-7 w-7" fill="currentColor" />
+        </a>
+      )}
     </>
   );
-};
-
-export default Header;
+}

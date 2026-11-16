@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://p8technology.com.br/sitemap.xml
