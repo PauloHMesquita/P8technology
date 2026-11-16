@@ -209,8 +209,8 @@ function SistemasP8() {
       <div className="container-site">
         <div className="max-w-2xl">
           <span className="rotulo bg-white/10 text-sky-300">Sistemas P8</span>
-          <h2 className="mt-4 text-3xl font-extrabold leading-tight text-white sm:text-4xl">Também desenvolvemos sistemas próprios</h2>
-          <p className="mt-4 text-lg leading-relaxed text-slate-400">Além das soluções LJ, a P8 cria e mantém sistemas para necessidades que um sistema de prateleira não atende.</p>
+          <h2 className="mt-4 text-3xl font-extrabold leading-tight text-white sm:text-4xl">Plataformas desenvolvidas pela P8</h2>
+          <p className="mt-4 text-lg leading-relaxed text-slate-400">Tecnologia própria para operações que pedem mais do que um sistema de prateleira, com implantação e suporte feitos pela nossa equipe.</p>
         </div>
         <div className="mt-10 grid gap-4 md:grid-cols-3">
           {PRODUTOS.map((p) => (
