@@ -1,255 +1,115 @@
-import { useState, useRef } from 'react';
-import { Mail, Phone, MapPin, Send, Linkedin, Github } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
+import { useRef, useState } from 'react';
+import { Instagram, Mail, MapPin, MessageCircle, Send, CheckCircle2 } from 'lucide-react';
 import emailjs from '@emailjs/browser';
+import { SOLUCOES } from '../data/solucoes';
+import { CONTATO, linkWhatsapp } from '../lib/site';
 
-const Contact = () => {
-  const form = useRef();
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
+// Configuração do EmailJS — a mesma que já estava em uso no site.
+const EMAILJS = { servico: 'service_eqzvomr', modelo: 'template_9xu9fqj', chavePublica: '6XnfzrvBx1YDq59dv' };
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
+export default function Contact({ segmentoInicial = '' }) {
+  const form = useRef(null);
+  const [estado, setEstado] = useState('livre'); // livre | enviando | ok | erro
 
-  const handleSubmit = async (e) => {
+  const enviar = async (e) => {
     e.preventDefault();
-    setIsSubmitting(true);
-
+    setEstado('enviando');
     try {
-      // Configurações do EmailJS — mantidas como já estavam, sem mudança.
-      const serviceId = 'service_eqzvomr';
-      const templateId = 'template_9xu9fqj';
-      const publicKey = '6XnfzrvBx1YDq59dv';
-
-      await emailjs.sendForm(serviceId, templateId, form.current, {
-        publicKey: publicKey,
-      });
-
-      alert('Mensagem enviada com sucesso! Entraremos em contato em breve.');
-      setFormData({ name: '', email: '', subject: '', message: '' });
-    } catch (error) {
-      console.error('Erro ao enviar mensagem:', error);
-      alert('Erro ao enviar mensagem. Tente novamente ou entre em contato diretamente pelo e-mail.');
-    } finally {
-      setIsSubmitting(false);
+      await emailjs.sendForm(EMAILJS.servico, EMAILJS.modelo, form.current, { publicKey: EMAILJS.chavePublica });
+      form.current.reset();
+      setEstado('ok');
+    } catch (erro) {
+      console.error('Falha ao enviar mensagem:', erro);
+      setEstado('erro');
     }
   };
-
-  // E-mail e telefone pessoais mantidos por enquanto, a pedido — trocar
-  // aqui quando o contato comercial da P8 Technology estiver definido.
-  const contactInfo = [
-    {
-      icon: <Mail className="w-6 h-6" />,
-      title: 'Email',
-      value: 'paulo_marques_mesquita@hotmail.com',
-      link: 'mailto:paulo_marques_mesquita@hotmail.com'
-    },
-    {
-      icon: <Phone className="w-6 h-6" />,
-      title: 'Telefone',
-      value: '+55 (38) 99992-2756',
-      link: 'tel:+5538999922756'
-    },
-    {
-      icon: <MapPin className="w-6 h-6" />,
-      title: 'Localização',
-      value: 'Sete Lagoas, MG - Brasil',
-      link: null
-    }
-  ];
-
-  const socialLinks = [
-    {
-      icon: <Linkedin className="w-6 h-6" />,
-      name: 'LinkedIn',
-      url: 'https://www.linkedin.com/in/paulohmesquita/',
-      color: 'hover:text-blue-400'
-    },
-    {
-      icon: <Github className="w-6 h-6" />,
-      name: 'GitHub',
-      url: 'https://github.com/PauloHMesquita',
-      color: 'hover:text-gray-400'
-    }
-  ];
 
   return (
-    <section id="contact" className="py-20 bg-slate-800">
-      <div className="container mx-auto px-4">
-        <div className="max-w-6xl mx-auto">
-          {/* Section Title */}
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-              Fale com a <span className="text-blue-400">P8 Technology</span>
-            </h2>
-            <p className="text-xl text-slate-300 max-w-3xl mx-auto">
-              Quer conhecer o LJ Sistemas de perto ou tirar uma dúvida sobre o sistema? Fale diretamente com quem desenvolve
-            </p>
-          </div>
+    <section id="contato" className="bg-tinta py-20 text-slate-300 sm:py-24">
+      <div className="container-site grid gap-12 lg:grid-cols-[1fr_1.15fr] lg:gap-16">
+        <div>
+          <span className="rotulo bg-white/10 text-sky-300">Contato</span>
+          <h2 className="mt-4 text-3xl font-extrabold leading-tight text-white sm:text-4xl">
+            Vamos ver o sistema funcionando no seu negócio?
+          </h2>
+          <p className="mt-4 max-w-md text-lg leading-relaxed text-slate-300">
+            Conte o seu segmento e como você trabalha hoje. Mostramos o sistema na prática e montamos uma proposta sob medida.
+          </p>
 
-          <div className="grid lg:grid-cols-2 gap-12">
-            {/* Contact Information */}
-            <div className="space-y-8">
-              <div>
-                <h3 className="text-2xl font-bold text-white mb-6">Informações de Contato:</h3>
-                <div className="space-y-6">
-                  {contactInfo.map((info, index) => (
-                    <div key={index} className="flex items-center space-x-4">
-                      <div className="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center text-white">
-                        {info.icon}
-                      </div>
-                      <div>
-                        <h4 className="text-white font-semibold">{info.title}</h4>
-                        {info.link ? (
-                          <a
-                            href={info.link}
-                            className="text-slate-300 hover:text-blue-400 transition-colors"
-                          >
-                            {info.value}
-                          </a>
-                        ) : (
-                          <p className="text-slate-300">{info.value}</p>
-                        )}
-                      </div>
-                    </div>
-                  ))}
-                </div>
+          <a href={linkWhatsapp()} target="_blank" rel="noopener noreferrer" className="btn-zap mt-8 w-full py-4 text-base sm:w-auto">
+            <MessageCircle className="h-5 w-5" /> Chamar no WhatsApp — {CONTATO.telefone}
+          </a>
+
+          <ul className="mt-10 space-y-4 text-[15px]">
+            <li>
+              <a href={`mailto:${CONTATO.email}`} className="flex items-center gap-3 hover:text-white">
+                <Mail className="h-5 w-5 text-sky-400" /> {CONTATO.email}
+              </a>
+            </li>
+            <li>
+              <a href={`https://instagram.com/${CONTATO.instagram}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 hover:text-white">
+                <Instagram className="h-5 w-5 text-sky-400" /> @{CONTATO.instagram}
+              </a>
+            </li>
+            <li className="flex items-center gap-3">
+              <MapPin className="h-5 w-5 text-sky-400" /> {CONTATO.cidade} e região
+            </li>
+          </ul>
+        </div>
+
+        <div className="rounded-2xl bg-white p-6 text-slate-700 shadow-2xl sm:p-8">
+          {estado === 'ok' ? (
+            <div className="flex min-h-[380px] flex-col items-center justify-center text-center">
+              <CheckCircle2 className="h-14 w-14 text-zap" />
+              <h3 className="mt-4 text-2xl font-bold">Mensagem enviada!</h3>
+              <p className="mt-2 max-w-sm text-slate-600">Recebemos seu contato e retornamos em breve. Se preferir, fale agora pelo WhatsApp.</p>
+              <button type="button" onClick={() => setEstado('livre')} className="btn-claro mt-6">Enviar outra mensagem</button>
+            </div>
+          ) : (
+            <form ref={form} onSubmit={enviar} className="space-y-4">
+              <h3 className="text-xl font-bold">Prefere que a gente entre em contato?</h3>
+              <div className="grid gap-4 sm:grid-cols-2">
+                <label className="block">
+                  <span className="mb-1.5 block text-sm font-medium text-slate-600">Nome</span>
+                  <input name="user_name" required autoComplete="name" className="campo" placeholder="Seu nome" />
+                </label>
+                <label className="block">
+                  <span className="mb-1.5 block text-sm font-medium text-slate-600">E-mail</span>
+                  <input name="user_email" type="email" required autoComplete="email" className="campo" placeholder="voce@empresa.com.br" />
+                </label>
               </div>
-
-              {/* Social Links */}
-              <div>
-                <h3 className="text-2xl font-bold text-white mb-6">Redes Sociais</h3>
-                <div className="flex space-x-4">
-                  {socialLinks.map((social, index) => (
-                    <a
-                      key={index}
-                      href={social.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`w-12 h-12 bg-slate-700 rounded-lg flex items-center justify-center text-slate-300 ${social.color} transition-colors duration-200`}
-                    >
-                      {social.icon}
-                    </a>
+              <label className="block">
+                <span className="mb-1.5 block text-sm font-medium text-slate-600">Segmento</span>
+                <select name="subject" required defaultValue={segmentoInicial} className="campo appearance-none">
+                  <option value="" disabled>Selecione o tipo de negócio</option>
+                  {SOLUCOES.map((s) => (
+                    <option key={s.slug} value={`Interesse: ${s.nome}`}>{s.nome}</option>
                   ))}
-                </div>
-              </div>
-
-              {/* Call to Action */}
-              <div className="bg-slate-900 p-6 rounded-lg border border-slate-700">
-                <h4 className="text-xl font-bold text-white mb-3">Pronto para organizar sua gestão comercial?</h4>
-                <p className="text-slate-300 mb-4">
-                  O LJ Sistemas nasceu resolvendo problemas reais da nossa própria operação — e pode ajudar a sua também.
+                  <option value="Interesse: outro segmento">Outro segmento</option>
+                </select>
+              </label>
+              <label className="block">
+                <span className="mb-1.5 block text-sm font-medium text-slate-600">Mensagem</span>
+                <textarea
+                  name="message"
+                  required
+                  rows={4}
+                  className="campo resize-none"
+                  placeholder="Telefone para retorno, quantos caixas/usuários, que sistema usa hoje…"
+                />
+              </label>
+              {estado === 'erro' && (
+                <p className="rounded-xl bg-red-50 px-4 py-3 text-sm text-red-700" role="alert">
+                  Não foi possível enviar agora. Tente de novo ou fale conosco pelo WhatsApp.
                 </p>
-                <div className="flex flex-wrap gap-2">
-                  <span className="px-3 py-1 bg-blue-500 text-white text-sm rounded-full font-medium">
-                    CRM Comercial
-                  </span>
-                  <span className="px-3 py-1 bg-blue-500 text-white text-sm rounded-full font-medium">
-                    Rotas & Prospecção
-                  </span>
-                  <span className="px-3 py-1 bg-blue-500 text-white text-sm rounded-full font-medium">
-                    Gestão de Vendas
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            {/* Contact Form */}
-            <div className="bg-slate-900 p-8 rounded-lg border border-slate-700">
-              <h3 className="text-2xl font-bold text-white mb-6">Envie uma Mensagem</h3>
-              <form ref={form} onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-slate-300 mb-2">
-                      Nome *
-                    </label>
-                    <Input
-                      id="name"
-                      name="user_name"
-                      type="text"
-                      required
-                      value={formData.name}
-                      onChange={handleInputChange}
-                      className="bg-slate-800 border-slate-600 text-white focus:border-blue-400"
-                      placeholder="Seu nome completo"
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-slate-300 mb-2">
-                      Email *
-                    </label>
-                    <Input
-                      id="email"
-                      name="user_email"
-                      type="email"
-                      required
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      className="bg-slate-800 border-slate-600 text-white focus:border-blue-400"
-                      placeholder="seu@email.com"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label htmlFor="subject" className="block text-sm font-medium text-slate-300 mb-2">
-                    Assunto *
-                  </label>
-                  <Input
-                    id="subject"
-                    name="subject"
-                    type="text"
-                    required
-                    value={formData.subject}
-                    onChange={handleInputChange}
-                    className="bg-slate-800 border-slate-600 text-white focus:border-blue-400"
-                    placeholder="Assunto da mensagem"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-slate-300 mb-2">
-                    Mensagem *
-                  </label>
-                  <Textarea
-                    id="message"
-                    name="message"
-                    required
-                    rows={5}
-                    value={formData.message}
-                    onChange={handleInputChange}
-                    className="bg-slate-800 border-slate-600 text-white focus:border-blue-400 resize-none"
-                    placeholder="Conte um pouco sobre sua empresa ou sua dúvida..."
-                  />
-                </div>
-
-                <Button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-400 hover:to-cyan-400 text-white font-semibold py-3 transition-all duration-300 disabled:opacity-50"
-                >
-                  <Send className="w-5 h-5 mr-2" />
-                  {isSubmitting ? 'Enviando...' : 'Enviar Mensagem'}
-                </Button>
-              </form>
-            </div>
-          </div>
+              )}
+              <button type="submit" disabled={estado === 'enviando'} className="btn-primario w-full py-3.5 disabled:opacity-60">
+                <Send className="h-4 w-4" /> {estado === 'enviando' ? 'Enviando…' : 'Enviar mensagem'}
+              </button>
+            </form>
+          )}
         </div>
       </div>
     </section>
   );
-};
-
-export default Contact;
+}

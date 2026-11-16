@@ -3,20 +3,14 @@ import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import path from 'path'
 
-// https://vite.dev/config/
+// base "/" (absoluto): as páginas de solução ficam em /solucoes/<nome> e
+// precisam achar os arquivos do site a partir da raiz.
 export default defineConfig({
-  plugins: [react(),tailwindcss()],
+  plugins: [react(), tailwindcss()],
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "./src"),
+      '@': path.resolve(__dirname, './src'),
     },
   },
-  base: './',
-  server: {
-    host: '0.0.0.0',
-    allowedHosts: [
-      '5173-i5yzx4kvyf8id21i1d2rc-e55845cb.manus.computer'
-    ]
-  }
+  base: '/',
 })
-
