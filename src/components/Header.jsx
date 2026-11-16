@@ -1,14 +1,14 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, LogIn, MessageCircle } from 'lucide-react';
+import { Menu, X, LogIn, MessageCircle, ChevronDown, ExternalLink } from 'lucide-react';
 import logo from '../assets/logo-p8-site.webp';
-import { CONTATO, linkWhatsapp } from '../lib/site';
+import { AREA_CLIENTE, linkWhatsapp } from '../lib/site';
 
 const ITENS = [
   { para: '/#solucoes', rotulo: 'Soluções' },
+  { para: '/#sistemas-p8', rotulo: 'Sistemas P8' },
   { para: '/#como-funciona', rotulo: 'Como funciona' },
   { para: '/#quem-somos', rotulo: 'Quem somos' },
-  { para: '/#duvidas', rotulo: 'Dúvidas' },
   { para: '/#contato', rotulo: 'Contato' },
 ];
 
@@ -16,6 +16,18 @@ export default function Header() {
   const [aberto, setAberto] = useState(false);
   const [rolou, setRolou] = useState(false);
   const { pathname, hash } = useLocation();
+  const [areaAberta, setAreaAberta] = useState(false);
+  const areaRef = useRef(null);
+
+  // Menu "Área do cliente": fecha ao clicar fora ou com Esc
+  useEffect(() => {
+    if (!areaAberta) return undefined;
+    const fora = (e) => areaRef.current && !areaRef.current.contains(e.target) && setAreaAberta(false);
+    const tecla = (e) => e.key === 'Escape' && setAreaAberta(false);
+    document.addEventListener('mousedown', fora);
+    window.addEventListener('keydown', tecla);
+    return () => { document.removeEventListener('mousedown', fora); window.removeEventListener('keydown', tecla); };
+  }, [areaAberta]);
 
   useEffect(() => {
     const aoRolar = () => setRolou(window.scrollY > 8);
@@ -44,7 +56,7 @@ export default function Header() {
     <>
       <header
         className={`fixed inset-x-0 top-0 z-50 transition-all duration-200 ${
-          rolou || aberto ? 'bg-white/90 shadow-[0_1px_0_rgb(15_28_46/0.08)] backdrop-blur-md' : 'bg-transparent'
+          rolou || aberto || pathname.startsWith('/sistemas') ? 'bg-white/90 shadow-[0_1px_0_rgb(15_28_46/0.08)] backdrop-blur-md' : 'bg-transparent'
         }`}
       >
         <div className="container-site flex h-16 items-center justify-between sm:h-[72px]">
@@ -61,9 +73,23 @@ export default function Header() {
           </nav>
 
           <div className="hidden items-center gap-2 lg:flex">
-            <a href={CONTATO.sistema} target="_blank" rel="noopener noreferrer" className="btn px-3 text-slate-600 hover:text-marca">
-              <LogIn className="h-4 w-4" /> Acessar sistema
-            </a>
+            <div className="relative" ref={areaRef}>
+              <button type="button" onClick={() => setAreaAberta((v) => !v)} aria-expanded={areaAberta} aria-haspopup="menu"
+                className="btn px-3 text-slate-600 hover:text-marca">
+                <LogIn className="h-4 w-4" /> Área do cliente <ChevronDown className={`h-4 w-4 transition-transform ${areaAberta ? 'rotate-180' : ''}`} />
+              </button>
+              {areaAberta && (
+                <div role="menu" className="cartao absolute right-0 top-full mt-2 w-72 p-2 shadow-xl">
+                  {AREA_CLIENTE.map((s) => (
+                    <a key={s.url} role="menuitem" href={s.url} target="_blank" rel="noopener noreferrer" onClick={() => setAreaAberta(false)}
+                      className="flex items-center justify-between gap-3 rounded-xl px-3 py-2.5 hover:bg-slate-50">
+                      <span><span className="block font-semibold text-tinta">{s.nome}</span><span className="block text-sm text-slate-600">{s.descricao}</span></span>
+                      <ExternalLink className="h-4 w-4 text-slate-400" />
+                    </a>
+                  ))}
+                </div>
+              )}
+            </div>
             <a href={linkWhatsapp()} target="_blank" rel="noopener noreferrer" className="btn-primario py-2.5">
               Pedir demonstração
             </a>
@@ -93,9 +119,13 @@ export default function Header() {
             <a href={linkWhatsapp()} target="_blank" rel="noopener noreferrer" className="btn-zap mt-5">
               <MessageCircle className="h-5 w-5" /> Falar no WhatsApp
             </a>
-            <a href={CONTATO.sistema} target="_blank" rel="noopener noreferrer" className="btn-claro mt-2">
-              <LogIn className="h-5 w-5" /> Acessar sistema
-            </a>
+            <p className="mt-6 px-3 text-xs font-bold uppercase tracking-wider text-slate-500">Área do cliente</p>
+            {AREA_CLIENTE.map((s) => (
+              <a key={s.url} href={s.url} target="_blank" rel="noopener noreferrer" className="btn-claro mt-2 justify-between">
+                <span className="flex items-center gap-2"><LogIn className="h-5 w-5" /> {s.nome}</span>
+                <span className="text-sm font-normal text-slate-600">{s.descricao}</span>
+              </a>
+            ))}
           </div>
         </nav>
       )}

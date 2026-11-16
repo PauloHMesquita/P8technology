@@ -2,6 +2,7 @@ import { useRef, useState } from 'react';
 import { Instagram, Mail, MapPin, MessageCircle, Send, CheckCircle2 } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 import { SOLUCOES } from '../data/solucoes';
+import { PRODUTOS } from '../data/produtos';
 import { CONTATO, linkWhatsapp } from '../lib/site';
 
 // Configuração do EmailJS — a mesma que já estava em uso no site.
@@ -79,12 +80,17 @@ export default function Contact({ segmentoInicial = '' }) {
                 </label>
               </div>
               <label className="block">
-                <span className="mb-1.5 block text-sm font-medium text-slate-600">Segmento</span>
+                <span className="mb-1.5 block text-sm font-medium text-slate-600">Interesse</span>
                 <select name="subject" required defaultValue={segmentoInicial} className="campo appearance-none">
-                  <option value="" disabled>Selecione o tipo de negócio</option>
-                  {SOLUCOES.map((s) => (
-                    <option key={s.slug} value={`Interesse: ${s.nome}`}>{s.nome}</option>
-                  ))}
+                  <option value="" disabled>Selecione o sistema ou o seu segmento</option>
+                  <optgroup label="Sistemas P8">
+                    {PRODUTOS.map((p) => <option key={p.slug} value={`Interesse: ${p.nome}`}>{p.nome}</option>)}
+                  </optgroup>
+                  <optgroup label="Soluções LJ por segmento">
+                    {SOLUCOES.map((s) => (
+                      <option key={s.slug} value={`Interesse: ${s.nome}`}>{s.nome}</option>
+                    ))}
+                  </optgroup>
                   <option value="Interesse: outro segmento">Outro segmento</option>
                 </select>
               </label>
