@@ -23,7 +23,7 @@
 
 @utility container-site { @apply mx-auto w-full max-w-6xl px-5 sm:px-6; }
 @utility btn { @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-[15px] font-semibold transition-colors duration-150; }
-@utility btn-primario { @apply btn bg-marca text-white hover:bg-marca-escura; }
+@utility btn-primario { @apply btn bg-marca-escura text-white hover:bg-[#055a94]; }
 @utility btn-zap { @apply btn bg-zap text-white hover:bg-zap-escuro; }
 @utility btn-claro { @apply btn border border-slate-200 bg-white text-tinta hover:border-marca hover:text-marca; }
 @utility rotulo { @apply inline-flex items-center gap-2 rounded-full bg-marca-clara px-3 py-1 text-xs font-semibold uppercase tracking-wider text-marca-escura; }

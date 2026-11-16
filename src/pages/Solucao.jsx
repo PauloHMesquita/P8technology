@@ -24,7 +24,7 @@ export default function Solucao() {
       <section className="relative overflow-hidden pt-28 pb-14 sm:pt-36 sm:pb-20">
         <div className="fundo-grade absolute inset-0 -z-10" aria-hidden="true" />
         <div className="container-site">
-          <nav className="flex flex-wrap items-center gap-2 text-sm text-slate-500" aria-label="Você está em">
+          <nav className="flex flex-wrap items-center gap-2 text-sm text-slate-600" aria-label="Você está em">
             <Link to="/" className="hover:text-marca">Início</Link>
             <span>/</span>
             <Link to="/#solucoes" className="hover:text-marca">Soluções</Link>
@@ -51,7 +51,7 @@ export default function Solucao() {
             </div>
 
             <aside className="cartao p-6 shadow-[0_24px_60px_-30px_rgb(15_28_46/0.35)]">
-              <p className="text-sm font-semibold uppercase tracking-wider text-slate-400">Com a P8 você tem</p>
+              <p className="text-sm font-semibold uppercase tracking-wider text-slate-500">Com a P8 você tem</p>
               <ul className="mt-4 space-y-3 text-[15px] text-tinta">
                 {['Implantação configurada para o seu negócio', 'Treinamento da equipe', 'Suporte local em Sete Lagoas e região', 'Sistema oficial LJ Sistemas'].map((t) => (
                   <li key={t} className="flex items-start gap-3">
@@ -73,7 +73,7 @@ export default function Solucao() {
               <div key={d.titulo} className="cartao p-6">
                 <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-marca-clara text-marca"><Check className="h-5 w-5" /></span>
                 <h3 className="mt-4 text-lg font-bold">{d.titulo}</h3>
-                <p className="mt-2 text-[15px] leading-relaxed text-slate-500">{d.texto}</p>
+                <p className="mt-2 text-[15px] leading-relaxed text-slate-600">{d.texto}</p>
               </div>
             ))}
           </div>
@@ -84,7 +84,7 @@ export default function Solucao() {
       <section id="modulos" className="py-16 sm:py-20">
         <div className="container-site">
           <h2 className="titulo-secao">Tudo o que vem no sistema</h2>
-          <p className="mt-3 max-w-2xl text-slate-500">Os módulos trabalham integrados: a venda baixa o estoque, gera a nota e alimenta o financeiro.</p>
+          <p className="mt-3 max-w-2xl text-slate-600">Os módulos trabalham integrados: a venda baixa o estoque, gera a nota e alimenta o financeiro.</p>
           <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {s.modulos.map((m) => (
               <div key={m.titulo} className="cartao p-6">
@@ -120,7 +120,7 @@ export default function Solucao() {
           <div className="container-site">
             <div className="flex items-end justify-between gap-4">
               <h2 className="text-2xl font-extrabold">Outras soluções em {categoria?.rotulo.toLowerCase()}</h2>
-              <Link to="/#solucoes" className="hidden items-center gap-1.5 text-sm font-semibold text-marca sm:inline-flex">
+              <Link to="/#solucoes" className="hidden items-center gap-1.5 text-sm font-semibold text-marca-escura sm:inline-flex">
                 <ArrowLeft className="h-4 w-4" /> Todas as soluções
               </Link>
             </div>

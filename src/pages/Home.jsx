@@ -72,7 +72,7 @@ function PainelIlustrativo() {
       <div className="cartao relative z-10 p-5 shadow-[0_30px_80px_-30px_rgb(15_28_46/0.35)] sm:p-6">
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-xs font-medium uppercase tracking-wider text-slate-400">Vendas de hoje</p>
+            <p className="text-xs font-medium uppercase tracking-wider text-slate-500">Vendas de hoje</p>
             <p className="mt-1 text-3xl font-extrabold text-tinta">R$ 8.430,90</p>
           </div>
           <span className="rounded-full bg-emerald-50 px-2.5 py-1 text-xs font-bold text-emerald-600">+12%</span>
@@ -92,14 +92,14 @@ function PainelIlustrativo() {
           ].map(([t, v]) => (
             <div key={t} className="rounded-xl bg-slate-50 px-2 py-3">
               <p className="font-semibold text-tinta">{t}</p>
-              <p className="mt-0.5 text-slate-500">{v}</p>
+              <p className="mt-0.5 text-slate-600">{v}</p>
             </div>
           ))}
         </div>
       </div>
       <div className="cartao absolute -bottom-6 -left-4 z-20 hidden items-center gap-3 px-4 py-3 shadow-xl sm:flex">
         <span className="flex h-9 w-9 items-center justify-center rounded-full bg-emerald-50 text-emerald-600"><Check className="h-5 w-5" /></span>
-        <div className="text-sm"><p className="font-semibold text-tinta">Nota autorizada</p><p className="text-slate-500">enviada ao cliente</p></div>
+        <div className="text-sm"><p className="font-semibold text-tinta">Nota autorizada</p><p className="text-slate-600">enviada ao cliente</p></div>
       </div>
       <div className="absolute -right-3 -top-5 z-0 h-full w-full rounded-2xl bg-marca/10" />
     </div>
@@ -123,7 +123,7 @@ function Beneficios() {
             <div key={titulo} className="cartao p-6">
               <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-marca-clara text-marca"><Icone className="h-6 w-6" /></span>
               <h3 className="mt-5 text-lg font-bold">{titulo}</h3>
-              <p className="mt-2 text-[15px] leading-relaxed text-slate-500">{texto}</p>
+              <p className="mt-2 text-[15px] leading-relaxed text-slate-600">{texto}</p>
             </div>
           ))}
         </div>
@@ -180,17 +180,17 @@ function Solucoes() {
                 </span>
                 <h3 className="text-lg font-bold leading-snug">{s.nome}</h3>
               </div>
-              <p className="mt-4 flex-1 text-[15px] leading-relaxed text-slate-500">{s.resumo}</p>
-              <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-marca">
+              <p className="mt-4 flex-1 text-[15px] leading-relaxed text-slate-600">{s.resumo}</p>
+              <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-marca-escura">
                 Ver solução <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </span>
             </Link>
           ))}
         </div>
 
-        <p className="mt-10 text-center text-slate-500">
+        <p className="mt-10 text-center text-slate-600">
           Seu segmento não está na lista?{' '}
-          <a href={linkWhatsapp('Olá! Quero saber se o sistema atende o meu segmento.')} target="_blank" rel="noopener noreferrer" className="font-semibold text-marca hover:underline">
+          <a href={linkWhatsapp('Olá! Quero saber se o sistema atende o meu segmento.')} target="_blank" rel="noopener noreferrer" className="font-semibold text-marca-escura underline-offset-2 hover:underline">
             Fale com a gente
           </a>{' '}
           — avaliamos o seu caso.
@@ -220,10 +220,10 @@ function ComoFunciona() {
             <li key={titulo} className="relative">
               <div className="flex items-center gap-3">
                 <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-tinta text-white"><Icone className="h-6 w-6" /></span>
-                <span className="text-sm font-bold text-slate-300">0{i + 1}</span>
+                <span className="text-sm font-bold text-marca-escura">0{i + 1}</span>
               </div>
               <h3 className="mt-5 text-lg font-bold">{titulo}</h3>
-              <p className="mt-2 text-[15px] leading-relaxed text-slate-500">{texto}</p>
+              <p className="mt-2 text-[15px] leading-relaxed text-slate-600">{texto}</p>
             </li>
           ))}
         </ol>
@@ -254,7 +254,7 @@ function QuemSomos() {
           />
           <div className="cartao absolute -bottom-5 left-5 right-5 px-5 py-3 shadow-lg">
             <p className="font-bold text-tinta">Paulo H. Mesquita</p>
-            <p className="text-sm text-slate-500">Fundador da P8 Technology</p>
+            <p className="text-sm text-slate-600">Fundador da P8 Technology</p>
           </div>
         </div>
 
@@ -275,9 +275,13 @@ function QuemSomos() {
               </li>
             ))}
           </ul>
-          <div className="mt-8 inline-flex items-center gap-4 rounded-2xl border border-slate-200 px-5 py-3">
-            <span className="text-xs font-semibold uppercase leading-tight tracking-wider text-slate-400">Parceria<br />oficial</span>
-            <img src={logoLJ} alt="LJ Sistemas" width="200" height="90" loading="lazy" className="h-10 w-auto" />
+          <div className="mt-9 flex flex-col items-start gap-5 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:flex-row sm:items-center sm:gap-7 sm:p-6">
+            <img src={logoLJ} alt="LJ Sistemas" width="200" height="90" loading="lazy" className="h-16 w-auto sm:h-20" />
+            <div className="sm:border-l sm:border-slate-200 sm:pl-7">
+              <p className="text-xs font-bold uppercase tracking-wider text-marca-escura">Parceria oficial</p>
+              <p className="mt-1 text-lg font-bold leading-snug text-tinta">Representante LJ Sistemas</p>
+              <p className="text-[15px] text-slate-600">Sete Lagoas e região</p>
+            </div>
           </div>
         </div>
       </div>
@@ -301,7 +305,7 @@ function Duvidas() {
         <div>
           <span className="rotulo">Dúvidas frequentes</span>
           <h2 className="titulo-secao mt-4">Perguntas que todo dono de negócio faz</h2>
-          <p className="mt-4 text-slate-500">Ficou alguma? Chame no WhatsApp e respondemos rapidinho.</p>
+          <p className="mt-4 text-slate-600">Ficou alguma? Chame no WhatsApp e respondemos rapidinho.</p>
         </div>
         <div className="space-y-3">
           {perguntas.map(([p, r]) => (
@@ -310,7 +314,7 @@ function Duvidas() {
                 {p}
                 <ChevronDown className="h-5 w-5 shrink-0 text-slate-400 transition-transform group-open:rotate-180" />
               </summary>
-              <p className="mt-3 text-[15px] leading-relaxed text-slate-500">{r}</p>
+              <p className="mt-3 text-[15px] leading-relaxed text-slate-600">{r}</p>
             </details>
           ))}
         </div>

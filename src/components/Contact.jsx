@@ -32,7 +32,7 @@ export default function Contact({ segmentoInicial = '' }) {
           <h2 className="mt-4 text-3xl font-extrabold leading-tight text-white sm:text-4xl">
             Vamos ver o sistema funcionando no seu negócio?
           </h2>
-          <p className="mt-4 max-w-md text-lg leading-relaxed text-slate-400">
+          <p className="mt-4 max-w-md text-lg leading-relaxed text-slate-300">
             Conte o seu segmento e como você trabalha hoje. Mostramos o sistema na prática e montamos uma proposta sob medida.
           </p>
 
@@ -62,7 +62,7 @@ export default function Contact({ segmentoInicial = '' }) {
             <div className="flex min-h-[380px] flex-col items-center justify-center text-center">
               <CheckCircle2 className="h-14 w-14 text-zap" />
               <h3 className="mt-4 text-2xl font-bold">Mensagem enviada!</h3>
-              <p className="mt-2 max-w-sm text-slate-500">Recebemos seu contato e retornamos em breve. Se preferir, fale agora pelo WhatsApp.</p>
+              <p className="mt-2 max-w-sm text-slate-600">Recebemos seu contato e retornamos em breve. Se preferir, fale agora pelo WhatsApp.</p>
               <button type="button" onClick={() => setEstado('livre')} className="btn-claro mt-6">Enviar outra mensagem</button>
             </div>
           ) : (
