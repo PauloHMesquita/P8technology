@@ -12,7 +12,7 @@ import logoLJ from '../assets/logo-lj-sistemas.png';
 
 export default function Home() {
   useSeo(
-    'P8 Technology | Sistema de gestão para o seu segmento — Sete Lagoas, MG',
+    'P8 Technology | Representante Oficial LJ Sistemas em Sete Lagoas, MG',
     'Sistemas de gestão LJ Sistemas para 18 segmentos: caixa, estoque, financeiro e notas fiscais. Implantação, treinamento e suporte local da P8 Technology em Sete Lagoas e região.'
   );
   return (
