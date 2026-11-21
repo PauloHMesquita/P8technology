@@ -18,6 +18,7 @@ export const CONTATO = {
 export const AREA_CLIENTE = [
   { nome: 'P8 Nexus', descricao: 'Locação e mão de obra', url: 'https://nexus.p8technology.com.br' },
   { nome: 'P8 CRM', descricao: 'Gestão comercial', url: 'https://crm.p8technology.com.br' },
+  { nome: 'P8 Opus', descricao: 'Engenharia e automação', url: 'https://opus.p8technology.com.br' },
 ];
 
 export const linkWhatsapp = (texto) =>
